@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Celebration</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Переключатель языка -->
+        <div class="language-switcher">
+            <button class="lang-btn active" data-lang="ru">Русский</button>
+            <button class="lang-btn" data-lang="en">English</button>
+            <button class="lang-btn" data-lang="uz">O'zbekcha</button>
+        </div>
+        
+        <header>
+            <h1 class="logo" data-key="siteTitle">Новогодний<span>Праздник</span></h1>
+            <p class="subtitle" data-key="siteSubtitle">Встречаем Новый 2026 год вместе!</p>
+        </header>
+        
+        <main class="main-content">
+            <!-- Секция счетчика времени -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-clock"></i> <span data-key="countdownTitle">До Нового года осталось:</span></h2>
+                <div class="countdown">
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="days">00</span>
+                        <span class="countdown-label" data-key="daysLabel">дней</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="hours">00</span>
+                        <span class="countdown-label" data-key="hoursLabel">часов</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="minutes">00</span>
+                        <span class="countdown-label" data-key="minutesLabel">минут</span>
+                    </div>
+                    <div class="countdown-item">
+                        <span class="countdown-value" id="seconds">00</span>
+                        <span class="countdown-label" data-key="secondsLabel">секунд</span>
+                    </div>
+                </div>
+            </section>
+            
+            <!-- Секция генератора поздравлений -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-gift"></i> <span data-key="greetingTitle">Генератор новогодних поздравлений</span></h2>
+                <div class="generator-container">
+                    <div class="generator-inputs">
+                        <div class="input-group">
+                            <label for="name" data-key="nameLabel">Имя получателя:</label>
+                            <input type="text" id="name" data-key="namePlaceholder" placeholder="Введите имя">
+                        </div>
+                        <div class="input-group">
+                            <label for="relationship" data-key="relationshipLabel">Ваши отношения:</label>
+                            <select id="relationship">
+                                <option value="family" data-key="familyOption">Семья/Родственник</option>
+                                <option value="friend" data-key="friendOption">Друг/Подруга</option>
+                                <option value="colleague" data-key="colleagueOption">Коллега</option>
+                                <option value="partner" data-key="partnerOption">Партнер/Возлюбленный</option>
+                                <option value="child" data-key="childOption">Ребенок</option>
+                            </select>
+                        </div>
+                        <div class="input-group">
+                            <label for="tone" data-key="toneLabel">Тон поздравления:</label>
+                            <select id="tone">
+                                <option value="formal" data-key="formalOption">Официальный</option>
+                                <option value="friendly" data-key="friendlyOption">Дружеский</option>
+                                <option value="funny" data-key="funnyOption">Шуточный</option>
+                                <option value="romantic" data-key="romanticOption">Романтический</option>
+                                <option value="inspirational" data-key="inspirationalOption">Вдохновляющий</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button class="generate-btn" id="generate-btn">
+                        <i class="fas fa-magic"></i> <span data-key="generateBtn">Сгенерировать поздравление</span>
+                    </button>
+                    
+                    <div class="greeting-result" id="greeting-result">
+                        <p class="greeting-text" id="greeting-text" data-key="greetingPlaceholder">Здесь появится ваше новогоднее поздравление</p>
+                    </div>
+                    
+                    <button class="copy-btn" id="copy-btn">
+                        <i class="far fa-copy"></i> <span data-key="copyBtn">Скопировать поздравление</span>
+                    </button>
+                </div>
+            </section>
+            
+            <!-- Секция новогоднего квиза -->
+            <section class="section">
+                <h2 class="section-title"><i class="fas fa-tree"></i> <span data-key="quizTitle">Новогодний квиз</span></h2>
+                <div class="quiz-container">
+                    <div class="quiz-info">
+                        <div data-key="questionLabel">Вопрос: <span id="current-question">1</span>/<span id="total-questions">5</span></div>
+                        <div data-key="scoreLabel">Баллы: <span id="score">0</span></div>
+                    </div>
+                    
+                    <div class="quiz-question" id="quiz-question" data-key="loadingQuestion">Вопрос загружается...</div>
+                    
+                    <div class="quiz-options" id="quiz-options">
+                        <!-- Варианты ответов будут загружены через JavaScript -->
+                    </div>
+                    
+                    <div class="quiz-controls">
+                        <button class="quiz-btn" id="prev-btn" disabled>
+                            <i class="fas fa-arrow-left"></i> <span data-key="prevBtn">Предыдущий</span>
+                        </button>
+                        <button class="quiz-btn" id="next-btn">
+                            <span data-key="nextBtn">Следующий</span> <i class="fas fa-arrow-right"></i>
+                        </button>
+                        <button class="quiz-btn" id="submit-btn" style="display: none;">
+                            <i class="fas fa-paper-plane"></i> <span data-key="submitBtn">Завершить квиз</span>
+                        </button>
+                    </div>
+                    
+                    <div class="quiz-result" id="quiz-result">
+                        <h3 class="result-title" data-key="resultTitle">Результаты квиза</h3>
+                        <div class="result-score" id="final-score">0/5</div>
+                        <p class="result-message" id="result-message"></p>
+                        <button class="quiz-btn" id="restart-btn">
+                            <i class="fas fa-redo"></i> <span data-key="restartBtn">Пройти еще раз</span>
+                        </button>
+                    </div>
+                </div>
+            </section>
+        </main>
+        
+        <footer>
+            <p data-key="footerText1">Счастливого Нового года! <i class="fas fa-tree tree-icon"></i> 2026</p>
+            <p data-key="footerText2">Created by O'tkirbek Xalimjonov</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
